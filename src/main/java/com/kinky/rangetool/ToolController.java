@@ -3,13 +3,11 @@ package com.kinky.rangetool;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
-import javafx.stage.Window;
 
 import java.io.File;
 
 public class ToolController {
 
-    private Window Stage;
     String pathToFile;
     boolean isPathValid = false;
 
@@ -17,12 +15,15 @@ public class ToolController {
     private TextField status;
 
 
-
     @FXML
     void browseToFile() {
 
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(Stage);
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fileChooser.showOpenDialog(null);
+        fileChooser.setTitle("Select a CSV");
+
 
         pathToFile = file.getAbsolutePath();
         status.setText(pathToFile);
@@ -30,19 +31,38 @@ public class ToolController {
     }
 
 
-
     @FXML
     void processFile() {
 
-        if (!isPathValid){
+        if (!isPathValid) {
 
             status.setText("Select a file first !");
 
-        }else{
+        } else {
 
-            status.setText("You pressed process");
+            processLine();
         }
 
     }
+
+    void processLine() {
+
+
+        status.setText("Read Line Method");
+
+    }
+
+
+    void writeSingleNumber() {
+
+
+    }
+
+
+    void writeRangeNumbers() {
+
+
+    }
+
 
 }
