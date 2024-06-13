@@ -1,3 +1,3 @@
 Manifest-Version: 1.0
-Main-Class: com.kinky.rangetool.HelloApplication
+Main-Class: com.kinky.rangetool.Launcher
 

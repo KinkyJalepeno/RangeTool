@@ -94,8 +94,6 @@ public class ToolController {
         } else if (numberLength == 9) {
             rangeStart = (number * 10);
 
-            System.out.println(rangeStart);
-
             processNineDigits(rangeStart, uda);
 
         } else {
@@ -145,8 +143,11 @@ public class ToolController {
 
         write.writeToFile(data);
 
+        status.setText("File Written - Move or Rename it !!");
+
 
     }
+
 
 
 }
