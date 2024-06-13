@@ -11,7 +11,6 @@ public class ToolController {
     String pathToFile;
     boolean isPathValid = false;
     int rangeStart = 0;
-    //int number = 1;
 
 
     @FXML
@@ -60,7 +59,6 @@ public class ToolController {
                 int number = Integer.parseInt(tokens[0]);
                 int uda = Integer.parseInt(tokens[1]);
 
-                System.out.println("Expand range point: " + number + " " + uda);
                 expandRange(number, uda);
 
 
@@ -74,29 +72,27 @@ public class ToolController {
 
         int numberLength = String.valueOf(number).length();
 
-        System.out.println("Number length: " + numberLength);
-
         if (numberLength == 6) {
             rangeStart = (number * 10000);
-            //System.out.println(rangeStart);
+
 
             writeSixDigitNumber(rangeStart, uda);
 
         } else if (numberLength == 7) {
             rangeStart = (number * 1000);
-            System.out.println(rangeStart);
+
 
             writeSevenDigitNumber(rangeStart, uda);
 
         } else if (numberLength == 8) {
             rangeStart = (number * 100);
-            System.out.println(rangeStart);
+
 
             writeEightDigitNumber(rangeStart, uda);
 
         } else if (numberLength == 9) {
             rangeStart = (number * 10);
-            System.out.println(rangeStart);
+
 
             writeNineDigitNumber(rangeStart, uda);
 
