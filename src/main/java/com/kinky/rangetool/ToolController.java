@@ -10,7 +10,7 @@ public class ToolController {
 
     String pathToFile;
     boolean isPathValid = false;
-    int rangeStart = 0;
+    long rangeStart = 0;
     WriteFileProcess write = new WriteFileProcess();
 
 
@@ -57,7 +57,11 @@ public class ToolController {
 
                 String tokens[] = text.split(",");
 
-                int number = Integer.parseInt(tokens[0]);
+                String numberTemp = tokens[0];
+                numberTemp = numberTemp.replaceFirst("0", "");
+
+
+                long number = Long.parseLong(numberTemp);
                 int uda = Integer.parseInt(tokens[1]);
 
                 expandRange(number, uda);
@@ -69,30 +73,30 @@ public class ToolController {
         }
     }
 
-    private void expandRange(int number, int uda) throws IOException {
+    private void expandRange(long number, int uda) throws IOException {
 
         int numberLength = String.valueOf(number).length();
 
         if (numberLength == 6) {
-            rangeStart = (number * 10000);
+            rangeStart = number * 10000;
 
 
             processSixDigits(rangeStart, uda);
 
         } else if (numberLength == 7) {
-            rangeStart = (number * 1000);
+            rangeStart = number * 1000;
 
 
             processSevenDigits(rangeStart, uda);
 
         } else if (numberLength == 8) {
-            rangeStart = (number * 100);
+            rangeStart = number * 100;
 
 
             processEightDigits(rangeStart, uda);
 
         } else if (numberLength == 9) {
-            rangeStart = (number * 10);
+            rangeStart = number * 10;
 
             processNineDigits(rangeStart, uda);
 
@@ -101,43 +105,43 @@ public class ToolController {
         }
     }
 
-    private void processNineDigits(int rangeStart, int uda) throws IOException {
+    private void processNineDigits(long rangeStart, int uda) throws IOException {
 
 
-        for (int i = rangeStart; i < (rangeStart + 10); i++){
-
-            writeToFile(i,uda);
-        }
-
-    }
-
-    private void processEightDigits(int rangeStart, int uda) throws IOException {
-
-        for (int i = rangeStart; i < (rangeStart + 100); i++){
+        for (long i = rangeStart; i < (rangeStart + 10); i++){
 
             writeToFile(i,uda);
         }
 
     }
 
-    private void processSevenDigits(int rangeStart, int uda) throws IOException {
+    private void processEightDigits(long rangeStart, int uda) throws IOException {
 
-        for (int i = rangeStart; i < (rangeStart + 1000); i++){
+        for (long i = rangeStart; i < (rangeStart + 100); i++){
+
+            writeToFile(i,uda);
+        }
+
+    }
+
+    private void processSevenDigits(long rangeStart, int uda) throws IOException {
+
+        for (long i = rangeStart; i < (rangeStart + 1000); i++){
 
             writeToFile(i,uda);
         }
     }
 
-    private void processSixDigits(int rangeStart, int uda) throws IOException {
+    private void processSixDigits(long rangeStart, int uda) throws IOException {
 
-        for (int i = rangeStart; i < (rangeStart + 10000); i++){
+        for (long i = rangeStart; i < (rangeStart + 10000); i++){
 
             writeToFile(i,uda);
         }
     }
 
 
-    void writeToFile(int number, int uda) throws IOException {
+    void writeToFile(long number, int uda) throws IOException {
 
         String data = ("0" + number + "," + uda);
 
